@@ -1,3 +1,9 @@
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
 .home-page{
 	margin: 0px;
 	background: #FFF;
@@ -43,12 +49,12 @@
 	color: #777777;
 	text-align: center;
 	padding: 0px 0px 2px 0px;
-	text-decoration: none;
 	margin-left: 20px;
 	margin-right: 20px;
 }
 #nav a:hover{
 	color: #333333;
+	text-decoration: none;
 	border-bottom: 4px solid #CC0000;
 }
 .content{
@@ -61,7 +67,6 @@
 	overflow: auto;
 	margin-top: -10px;
 	margin-bottom: 30px;
-	background-color: #ccffff;
 }
 .question-summary{
 	border-bottom: 1px solid #EAEAEA;
@@ -70,8 +75,6 @@
 	width: 730px;
 	float: left;
 	height:31px;
-	background-color: #ffccff;
-	
 }
 .question-status{
 	
@@ -110,10 +113,40 @@
 }
 .summary a{
 	float: left;
+	font-size: 120%;
+	font-weight: bold;
 }
 .tags {
 	line-height: 18px;
 	float: left;
+}
+.tags a{
+	color: #3E6D8E;
+	background-color: #E0EAF1;
+	border-bottom: 1px solid #b3cee1;
+	border-right: 1px solid #b3cee1;
+	padding: 3px 4px 3px 4px;
+	margin: 2px 2px 2px 0;
+	text-decoration: none;
+	font-size: 90%;
+	line-height: 1.4;
+	white-space: nowrap;
+	display: inline-block;
+
+	-moz-border-radius: 8px;      /* Gecko browsers */
+	-webkit-border-radius: 8px;   /* Webkit browsers */
+	border-radius: 8px;            /* W3C syntax */
+	
+}
+.tags a:hover{
+	background-color: #c4dae9;
+	border-bottom: 1px solid #c4dae9;
+	border-right: 1px solid #c4dae9;
+	text-decoration: none;
+}
+.question-info{
+	color: #999;
+	float: right;	
 }
 #footer{
 	clear: both;
