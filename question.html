@@ -2,12 +2,13 @@
 <html>
 
 	<head>
-	<title>问题详情</title>
-	<meta charset="UTF-8" />
-	<meta name="keywords" content="ask, website" />
-	<meta name="revised" content="Jerry, 2013/10/31" />
-	<meta name="author" content="揭英泽" />
-	<link rel="stylesheet" type="text/css" href="all.css" />
+		<title>问题详情</title>
+		<meta charset="UTF-8" />
+		<meta name="keywords" content="ask, website" />
+		<meta name="revised" content="Jerry, 2013/10/31" />
+		<meta name="author" content="揭英泽" />
+		<link rel="stylesheet" type="text/css" href="all.css" />
+		<script src="ckeditor/ckeditor.js"></script>
 	</head>
 	<body class="page">
 		<div id="header">
@@ -28,8 +29,31 @@
 					<h1>有什么好用的可视化的网页布局工具吗？</h1>
 				</div>
 				<div class="question">
+					<div class="vote">
+					</div>
+					<div class="post">
+						<div class="post-text">
+							<p>每次网页布局都得各种调CSS代码，挺麻烦的，有没有用鼠标拖动就可以完成布局的工具呢？</p>
+							<p><img src="question.png" alt="question"></p>
+						</div>
+					</div>
+					<div class="post-tags">
+						<a href="" class="tag">html</a>
+						<a href="" class="tag">css</a>
+						<a href="" class="tag">javascript</a>
+					</div>
 				</div>
-				<div class="answser">
+				<h2>所有答案</h2>
+				<div class="answer">
+					<div class="post-text">
+						<p>你可以试试这个，Bootstrap的可视化编辑工具。<a href="http://www.bootcss.com/p/layoutit">www.bootcss.com/p/layoutit/</a></p>
+						<p><img src="answer.png" alt="layoutit"/></p>
+					</div>
+				</div>
+				<h2>您的答案</h2>
+				<div class="editor">
+					<textarea name="preEditor">在此处输入您的回答</textarea>
+					<script>CKEDITOR.replace( 'preEditor' );</script>				
 				</div>
 			</div>
 			<div class="sidebar">
