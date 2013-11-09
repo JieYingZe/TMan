@@ -1,29 +1,5 @@
-<!DOCTYPE HTML>
-<html>
+<?php include 'include/header.php'; ?>
 
-	<head>
-	<title>天问</title>
-	<meta charset="UTF-8" />
-	<meta http-equiv="refresh" content="1024" />
-	<meta name="keywords" content="ask, website" />
-	<meta name="revised" content="Jerry, 2013/10/24" />
-	<meta name="description" content="问答网站" />
-	<meta name="author" content="揭英泽" />
-	<link rel="stylesheet" type="text/css" href="all.css" />
-	</head>
-	<body class="page">
-		<div id="header">
-			<a id="logo" href="index.html" title="天问"></a>
-		</div>
-		<div id="nav">
-			<ul>
-				<li><a href="index.html" title="Home">我的主页</a></li>
-				<li><a href="questions.html" title="Questions">热点问题</a></li>
-				<li><a href="tags.html" title="Tags">主题标签</a></li>
-				<li><a href="person.html" title="Person">个人页面</a></li>
-				<li><a href="account.html" title="Account">账号管理</a></li>
-			</ul>
-		</div>
 		<div class="content">
 			<div class="mainbar">
 				<div class="question-summary">
@@ -750,14 +726,4 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer">
-			<ul class="footer-left">
-				<li>© 2013 南京大学 软件学院</li>
-			</ul>
-			<ul class="footer-right">
-				<li><a href="mailto:jyz11@software.nju.edu.cn.com?subject="关于天问网站"">联系我们</a></li>
-			</ul>
-		</div>
-	</body>
-
-</html>
+<?php include 'include/footer.php'; ?>

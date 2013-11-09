@@ -58,6 +58,10 @@ input:focus,textarea:focus{
 	margin-top: 10px;
 	margin-left: 10%;
 }
+.login-form{
+	float: right;
+	margin-right: 10%;
+}
 #nav{
 	height: 55px;
 	width: 980px;
@@ -89,6 +93,7 @@ input:focus,textarea:focus{
 	text-decoration: none;
 	border-bottom: 4px solid #CC0000;
 }
+
 .content{
 	margin: 0 auto;
 	width: 980px;

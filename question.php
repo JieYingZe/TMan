@@ -1,28 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-
-	<head>
-		<title>问题详情</title>
-		<meta charset="UTF-8" />
-		<meta name="keywords" content="ask, website" />
-		<meta name="revised" content="Jerry, 2013/10/31" />
-		<meta name="author" content="揭英泽" />
-		<link rel="stylesheet" type="text/css" href="all.css" />
-		<script src="ckeditor/ckeditor.js"></script>
-	</head>
-	<body class="page">
-		<div id="header">
-			<a id="logo" href="index.html" title="天问"></a>
-		</div>
-		<div id="nav">
-			<ul>
-				<li><a href="index.html" title="Home">我的主页</a></li>
-				<li><a href="questions.html" title="Questions">热点问题</a></li>
-				<li><a href="tags.html" title="Tags">主题标签</a></li>
-				<li><a href="person.html" title="Person">个人页面</a></li>
-				<li><a href="account.html" title="Account">账号管理</a></li>
-			</ul>
-		</div>
+<?php include 'include/header.php'; ?>
 		<div class="content">
 			<div class="mainbar">
 				<div class="question-title">
@@ -112,14 +88,4 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer">
-			<ul class="footer-left">
-				<li>© 2013 NJU·SOFTWARE INSTITUTE</li>
-			</ul>
-			<ul class="footer-right">
-				<li><a href="">Contact</a></li>
-			</ul>
-		</div>
-	</body>
-
-</html>
+<?php include 'include/footer.php'; ?>
