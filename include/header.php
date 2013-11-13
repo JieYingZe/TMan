@@ -16,14 +16,14 @@
 						<label for="username" class="control-label">用户名</label>
 						<div class="controls">
 							<p id="username_notification" class="notification"></p>
-							<input id="username" maxlength="15" name="user[username]" type="text" value="jieyingze">
+							<input id="username" maxlength="15" name="username" type="text" value="jieyingze">
 						</div>
 					</fieldset>
 					<fieldset id="password_fieldset" class="control-group">
 						<label for="user_email" class="control-label">密码</label>
 						<div class="controls">
 							<p id="email_notification" class="notification"></p>
-							<input id="user_email" class="password-input" name="user[password]" type="text" value="123456">
+							<input id="password" class="password-input" name="password" type="text" value="123456">
 						</div>
 					</fieldset>
 					<button type="submit">登陆</button>
