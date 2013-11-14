@@ -10,6 +10,11 @@
 	</head>
 		<div id="header">
 			<a id="logo" href="index.php" title="天问"></a>
+<?php
+session_start();
+if(!isset($_SESSION['username']))
+{
+?>
 			<div id="login">
 				<form class="login-form" method="post" action="login.php">
 					<fieldset id="username_fieldset" class="control-group">
@@ -26,9 +31,20 @@
 							<input id="password" class="password-input" name="password" type="text" value="123456">
 						</div>
 					</fieldset>
-					<button type="submit">登陆</button>
+					<button class="login_button" type="submit">登陆</button>
 				</form>
 			</div>
+<?php
+}
+else
+{
+?>
+			<div>
+				这是个人信息
+			</div>
+<?php
+}
+?>
 		</div>
 	<body class="page">
 		<div id="nav">
