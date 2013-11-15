@@ -1,6 +1,4 @@
 <?php
-print_r($_POST);
-echo $_SERVER['REQUEST_URI'];
 $host = "localhost"; // Host name 
 $MySQL_username = "Jerry"; // Mysql username 
 $MySQL_password = "password"; // Mysql password 
@@ -28,9 +26,10 @@ $count = mysqli_num_rows($result);
 if($count == 1){
 
 // Register $myusername, $mypassword and redirect to file "login_success.php
+session_start();
 $_SESSION['username'] = $username;
 $_SESSION['password'] = $password;
-header("location:".$_SERVER['PHP_SELF']);
+header("location:".$_POST['redirect_to']);
 }
 else {
 echo "Wrong Username or Password";

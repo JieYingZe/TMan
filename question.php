@@ -29,6 +29,7 @@
 				<h2>您的答案</h2>
 				<div class="editor">
 					<textarea name="preEditor">在此处输入您的回答</textarea>
+					<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 					<script>CKEDITOR.replace( 'preEditor' );</script>				
 				</div>
 			</div>

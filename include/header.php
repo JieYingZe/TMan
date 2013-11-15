@@ -31,7 +31,10 @@ if(!isset($_SESSION['username']))
 							<input id="password" class="password-input" name="password" type="text" value="123456">
 						</div>
 					</fieldset>
-					<button class="login_button" type="submit">登陆</button>
+					<div>
+						<input type="hidden" name="redirect_to" value=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>>
+						<button class="login_button" type="submit">登陆</button>
+					</div>
 				</form>
 			</div>
 <?php
