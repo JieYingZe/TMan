@@ -15,25 +15,28 @@ session_start();
 if(!isset($_SESSION['username']))
 {
 ?>
-			<div id="login">
+			<div class="login">
 				<form class="login-form" method="post" action="login.php">
-					<fieldset id="username_fieldset" class="control-group">
-						<label for="username" class="control-label">用户名</label>
-						<div class="controls">
-							<p id="username_notification" class="notification"></p>
-							<input id="username" maxlength="15" name="username" type="text" value="jieyingze">
-						</div>
-					</fieldset>
-					<fieldset id="password_fieldset" class="control-group">
-						<label for="user_email" class="control-label">密码</label>
-						<div class="controls">
-							<p id="email_notification" class="notification"></p>
-							<input id="password" class="password-input" name="password" type="text" value="123456">
-						</div>
-					</fieldset>
-					<div>
+					<div id="login-input">
+						<fieldset id="username-fieldset" class="control-group">
+							<label for="username" class="control-label">用户名</label>
+							<div class="controls">
+								<p id="username-notification" class="notification"></p>
+								<input id="username" maxlength="15" name="username" type="text" value="jieyingze">
+							</div>
+						</fieldset>
+						<fieldset id="password-fieldset" class="control-group">
+							<label for="user-email" class="control-label">密码</label>
+							<div class="controls">
+								<p id="password-notification" class="notification"></p>
+								<input id="password" class="password-input" name="password" type="text" value="123456">
+							</div>
+						</fieldset>
+					</div>
+					<div id="submit-button">
 						<input type="hidden" name="redirect_to" value=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>>
-						<button class="login_button" type="submit">登陆</button>
+						<a class="register-button btn" href="register.php">注册</a>
+						<button class="login-button btn" type="submit">登录</button>
 					</div>
 				</form>
 			</div>
