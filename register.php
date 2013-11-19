@@ -1,13 +1,6 @@
 <?php
-echo 这是注册页面;
-echo $_POST['username'];
-echo $_POST['password'];
-/*
-$host = "localhost"; // Host name 
-$MySQL_username = "Jerry"; // Mysql username 
-$MySQL_password = "password"; // Mysql password 
-$db_name = "test"; // Database name 
-$tbl_name = "member"; // Table name 
+include 'include/db.php';
+$tbl_name = "user"; // Table name 
 
 // Connect to server and select databse.
 $con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect"); 
@@ -38,5 +31,5 @@ header("location:".$_POST['redirect_to']);
 else {
 echo "Wrong Username or Password";
 }
-*/
 ?>
+
