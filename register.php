@@ -1,14 +1,9 @@
 <?php
-include 'include/db.php';
-$tbl_name = "user"; // Table name 
-
-// Connect to server and select databse.
-$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect"); 
-
+/*
 // username and password sent from form 
 $username = $_POST['username'];
 $password = $_POST['password'];
-// To protect MySQL injection (more detail about MySQL injection)
+
 $username = stripslashes($username);
 $password = stripslashes($password);
 $username = mysqli_real_escape_string($con, $username);
@@ -31,5 +26,118 @@ header("location:".$_POST['redirect_to']);
 else {
 echo "Wrong Username or Password";
 }
+*/
+?>
+<?php
+
+include 'include/db.php';
+$tbl_name = "user"; // Table name 
+
+// Connect to server and select databse.
+$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect"); 
+
+// define variables and set to empty values
+$usernameErr = $passwordErr = $emailErr = $genderErr = $websiteErr = "";
+$username = $password = $email = $gender = $profile = $website = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+	if (empty($_POST["username"]))
+	{$usernameErr = "用户名不能为空";}
+	else
+	{
+		$username = test_input($_POST["username"]);
+		// check if username only contains letters and whitespace
+		if (!preg_match("/^[a-zA-Z0-9 ]*$/",$username))
+		{
+			$usernameErr = "Only letters and white space allowed"; 
+		}
+	}
+	if (empty($_POST["password"]))
+	{$passwordErr = "密码不能为空";}
+	else
+	{
+		$password = test_input($_POST["password"]);
+		// check if password only contains letters and whitespace
+		if (!preg_match("/^[a-zA-Z0-9 ]*$/",$password))
+		{
+			$passwordErr = "Only letters and white space allowed"; 
+		}
+	}
+   if (empty($_POST["email"]))
+     {$emailErr = "E-mail不能为空";}
+   else
+     {
+     $email = test_input($_POST["email"]);
+     // check if e-mail address syntax is valid
+     if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email))
+       {
+       $emailErr = "邮箱格式错误"; 
+       }
+     }
+     
+   if (empty($_POST["website"]))
+     {$website = "";}
+   else
+     {
+     $website = test_input($_POST["website"]);
+     // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
+     if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website))
+       {
+       $websiteErr = "Invalid URL"; 
+       }
+     }
+
+   if (empty($_POST["profile"]))
+     {$profile = "";}
+   else
+     {$profile = test_input($_POST["profile"]);}
+
+   if (empty($_POST["gender"]))
+     {$genderErr = "必须选择性别";}
+   else
+     {$gender = test_input($_POST["gender"]);}
+}
+
+function test_input($data)
+{
+	// To protect MySQL injection
+     $data = trim($data);
+     $data = stripslashes($data);
+     $data = htmlspecialchars($data);
+     return $data;
+}
+
 ?>
 
+<?php
+include 'include/header.php';
+?>
+
+<p><span class="error">* 必须填写的内容.</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+   用户名: <input type="text" name="username" value="<?php echo $username;?>">
+   <span class="error">* <?php echo $usernameErr;?></span>
+   <br><br>
+   密码: <input type="text" name="password" value="<?php echo $password;?>">
+   <span class="error">* <?php echo $passwordErr;?></span>
+   <br><br>
+   E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+   <span class="error">* <?php echo $emailErr;?></span>
+   <br><br>
+   性别:
+   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?>  value="female">男
+   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?>  value="male">女
+   <span class="error">* <?php echo $genderErr;?></span>
+   <br><br>
+   个人网站: <input type="text" name="website" value="<?php echo $website;?>">
+   <span class="error"><?php echo $websiteErr;?></span>
+   <br><br>
+   个人简介: <textarea name="profile" rows="5" cols="40"><?php echo $profile;?></textarea>
+   <br><br>
+   <button type="submit" name="submit" class="register-button btn" value="Submit">注册新用户</button>
+</form>
+
+<?php
+include 'include/footer.php';
+?>

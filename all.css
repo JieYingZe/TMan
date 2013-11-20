@@ -42,6 +42,9 @@ input:focus,textarea:focus{
 	font-size: 80%;
 	text-align: center;
 }
+.error{
+	color: #C00;
+}
 #header{
 	margin: 0 0 0 0px;
 	padding: 0;
