@@ -30,12 +30,12 @@ echo "Wrong Username or Password";
 ?>
 <?php
 
+
 include 'include/db.php';
 $tbl_name = "user"; // Table name 
 
 // Connect to server and select databse.
 $con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect"); 
-
 // define variables and set to empty values
 $usernameErr = $passwordErr = $emailErr = $genderErr = $websiteErr = "";
 $username = $password = $email = $gender = $profile = $website = "";
@@ -43,69 +43,116 @@ $username = $password = $email = $gender = $profile = $website = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	if (empty($_POST["username"]))
-	{$usernameErr = "用户名不能为空";}
+	{
+		$usernameErr = "用户名不能为空";
+	}
 	else
 	{
 		$username = test_input($_POST["username"]);
 		// check if username only contains letters and whitespace
-		if (!preg_match("/^[a-zA-Z0-9 ]*$/",$username))
+		if (!preg_match("/^[a-zA-Z0-9]*$/",$username))
 		{
-			$usernameErr = "Only letters and white space allowed"; 
+			$usernameErr = "用户名只能由字母和数字组成";
+		}
+		elseif
+		{
+			$sql = "SELECT * FROM $tbl_name WHERE username='$username'";
+			$result = mysqli_query($con, $sql);
+			$count = mysqli_num_rows($result);
+			if($count != 0)
+			{
+				$usernameErr = "用户名已存在，请注册其他用户名";
+			}
 		}
 	}
+
 	if (empty($_POST["password"]))
-	{$passwordErr = "密码不能为空";}
+	{
+		$passwordErr = "密码不能为空";
+	}
 	else
 	{
 		$password = test_input($_POST["password"]);
 		// check if password only contains letters and whitespace
-		if (!preg_match("/^[a-zA-Z0-9 ]*$/",$password))
+		if (!preg_match("/^[a-zA-Z0-9]*$/",$password))
 		{
-			$passwordErr = "Only letters and white space allowed"; 
+			$passwordErr = "密码只能由字母和数字组成";
 		}
 	}
-   if (empty($_POST["email"]))
-     {$emailErr = "E-mail不能为空";}
-   else
-     {
-     $email = test_input($_POST["email"]);
-     // check if e-mail address syntax is valid
-     if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email))
-       {
-       $emailErr = "邮箱格式错误"; 
-       }
-     }
-     
-   if (empty($_POST["website"]))
-     {$website = "";}
-   else
-     {
-     $website = test_input($_POST["website"]);
-     // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
-     if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website))
-       {
-       $websiteErr = "Invalid URL"; 
-       }
-     }
 
-   if (empty($_POST["profile"]))
-     {$profile = "";}
-   else
-     {$profile = test_input($_POST["profile"]);}
+	if (empty($_POST["email"]))
+	{
+		$emailErr = "E-mail不能为空";
+	}
+	else
+	{
+		$email = test_input($_POST["email"]);
+		// check if e-mail address syntax is valid
+		if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email))
+		{
+			$emailErr = "邮箱格式错误";
+		}
+		elseif
+		{
+			$sql = "SELECT * FROM $tbl_name WHERE email='$email'";
+			$result = mysqli_query($con, $sql);
+			$count = mysqli_num_rows($result);
+			if($count != 0)
+			{
+				$emailErr = "邮箱已注册，请直接登录";
+			}
+		}
+	}
 
-   if (empty($_POST["gender"]))
-     {$genderErr = "必须选择性别";}
-   else
-     {$gender = test_input($_POST["gender"]);}
+	if (empty($_POST["gender"]))
+	{
+		$genderErr = "必须选择性别";
+	}
+	else
+	{
+		$gender = test_input($_POST["gender"]);
+	}
+
+	if (empty($_POST["website"]))
+	{
+		$website = "";
+	}
+	else
+	{
+		$website = test_input($_POST["website"]);
+		// check if URL address syntax is valid (this regular expression also allows dashes in the URL)
+		if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website))
+		{
+			$websiteErr = "网址格式错误";
+		}
+	}
+
+	if (empty($_POST["profile"]))
+	{
+		$profile = "";
+	}
+	else
+	{
+		$profile = test_input($_POST["profile"]);
+	}
+
+
+
+	if(!($usernameErr || $passwordErr || $emailErr || $genderErr || $websiteErr))
+	{
+
+		$sql = "INSERT INTO $tbl_name (username, password, email, ) VALUES ()";
+
+	}
 }
 
 function test_input($data)
 {
 	// To protect MySQL injection
-     $data = trim($data);
-     $data = stripslashes($data);
-     $data = htmlspecialchars($data);
-     return $data;
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
 }
 
 ?>
@@ -126,8 +173,8 @@ include 'include/header.php';
    <span class="error">* <?php echo $emailErr;?></span>
    <br><br>
    性别:
-   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?>  value="female">男
-   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?>  value="male">女
+   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?>  value="female">女
+   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?>  value="male">男
    <span class="error">* <?php echo $genderErr;?></span>
    <br><br>
    个人网站: <input type="text" name="website" value="<?php echo $website;?>">
