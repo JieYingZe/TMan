@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			$usernameErr = "用户名只能由字母和数字组成";
 		}
-		elseif
+		else
 		{
 			$sql = "SELECT * FROM $tbl_name WHERE username='$username'";
 			$result = mysqli_query($con, $sql);
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			$emailErr = "邮箱格式错误";
 		}
-		elseif
+		else
 		{
 			$sql = "SELECT * FROM $tbl_name WHERE email='$email'";
 			$result = mysqli_query($con, $sql);
@@ -141,8 +141,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	if(!($usernameErr || $passwordErr || $emailErr || $genderErr || $websiteErr))
 	{
 
-		$sql = "INSERT INTO $tbl_name (username, password, email, ) VALUES ()";
+		$sql = "INSERT INTO `$tbl_name` (`username`, `password`, `email`, `gender`, `website`, `profile`) VALUES ('$username', '$password', '$email', '$gender', '$website', '$profile')";
+		$result = mysqli_query($con, $sql);
+		if($result)
+		{
+			session_start();
+			$_SESSION['username'] = $username;
+			$_SESSION['password'] = $password;
 
+			$host  = $_SERVER['HTTP_HOST'];
+			$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+			$extra = 'index.php';
+			header("Location: http://$host$uri/$extra");
+		}
 	}
 }
 

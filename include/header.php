@@ -44,9 +44,20 @@ if(!isset($_SESSION['username']))
 }
 else
 {
+	$username = $_SESSION['username'];
+	include 'include/db.php';
+	$tbl_name = "user";
+	$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect");
+	$sql = "SELECT `avatar` FROM `$tbl_name` WHERE username='$username'";
+	$result = mysqli_query($con, $sql);
+	
+
+	$avatar = mysql_result($result, 0);
 ?>
-			<div>
-				这是个人信息
+			<div class="account-summary">
+				<div><?php echo $_SESSION['username'] ?></div>
+				<div class=""></div>
+				<div class="avatar"><img src="images/avatar/<?php $avatar ?>" /></div>
 			</div>
 <?php
 }
