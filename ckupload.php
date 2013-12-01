@@ -1,6 +1,7 @@
 <?php
 
-$url = 'images/uploads/'.time()."_".$_FILES['upload']['name'];
+//$url = 'images/uploads/'.time()."_".$_FILES['upload']['name'];
+$url = 'images/uploads/'.time().".".pathinfo($_FILES['upload']['name'], PATHINFO_EXTENSION);
 var_dump($_FILES['upload']["type"]);
  //extensive suitability check before doing anything with the file…
     if (($_FILES['upload'] == "none") OR (empty($_FILES['upload']['name'])) )
@@ -26,7 +27,7 @@ var_dump($_FILES['upload']["type"]);
       {
          $message = "Error moving uploaded file. Check the script is granted Read/Write/Modify permissions.".$url;
       }
-      $url = "../" . $url;
+      //$url = "../" . $url;
     }
 $funcNum = $_GET['CKEditorFuncNum'] ;
 echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcNum, '$url', '$message');</script>";

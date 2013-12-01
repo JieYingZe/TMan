@@ -1,6 +1,26 @@
 <?php
 include 'include/db.php';
+$tbl_name = "question";
+$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect");
 
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+
+	$question_title = $_POST['title'];
+	$question_content = $_POST['content'];
+	
+	$sql = "INSERT INTO `$tbl_name` (`title`, `content`, `reward`, `user_userid`) VALUES ('$question_title', '$question_content', '0', '1')";
+	$result = mysqli_query($con, $sql);
+	if($result)
+	{
+		echo "成功发表";
+		$sql = "SELECT * FROM $tbl_name";
+		$result = mysqli_query($con, $sql);
+		$row = mysqli_fetch_array($result);
+		echo $row['title'];
+		echo $row['content'];
+	}
+}
 ?>
 <?php include 'include/header.php'; ?>
 		<div class="content">
@@ -10,10 +30,11 @@ include 'include/db.php';
 						<input class="ask-title" name="title" type="text"></input>
 					<h2>问题描述</h2>
 					<div class="editor">
-						<textarea name="preEditor">在此处输入问题的详细描述</textarea>
+						<textarea name="content">在此处输入问题的详细描述</textarea>
 						<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-						<script>CKEDITOR.replace( 'preEditor' );</script>				
+						<script>CKEDITOR.replace( 'content' );</script>				
 					</div>
+					<button class="btn" type="summit">发表问题</button>
 				</form>
 			</div>
 			<div class="sidebar">
