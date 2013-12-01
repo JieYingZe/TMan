@@ -36,7 +36,7 @@ if(!isset($_SESSION['username']))
 					<div id="submit-button">
 						<input type="hidden" name="redirect_to" value=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>>
 						<a class="register-button btn" href="register.php">注册</a>
-						<button class="login-button btn" type="submit">登录</button>
+						<button class="log-button btn" type="submit">登录</button>
 					</div>
 				</form>
 			</div>
@@ -48,16 +48,26 @@ else
 	include 'include/db.php';
 	$tbl_name = "user";
 	$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect");
-	$sql = "SELECT `avatar` FROM `$tbl_name` WHERE username='$username'";
+	$sql = "SELECT `avatar`,`credit` FROM `$tbl_name` WHERE username='$username'";
 	$result = mysqli_query($con, $sql);
 	
 
-	$avatar = mysql_result($result, 0);
+	$row = mysqli_fetch_array($result);
+	$avatar = $row['avatar'];
+	$credit = $row['credit'];
 ?>
-			<div class="account-summary">
-				<div><?php echo $_SESSION['username'] ?></div>
-				<div class=""></div>
-				<div class="avatar"><img src="images/avatar/<?php $avatar ?>" /></div>
+			<div class="account">
+				<div class="account-summary">
+					<div class="account-username"><?php echo $username ?></div>
+					<div class="account-operation">
+						<form method="post" action="logout.php">
+							<input type="hidden" name="redirect_to" value=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>>
+							<button type="submit" class="log-button btn"  id="logout-button" href="logout.php">退出</button>
+						</form>
+						<div class="account-credit"><img src="images/coin.png"><?php echo $credit ?></div>
+					</div>
+				</div>
+				<div class="avatar"><img src="images/avatar/<?php echo $avatar ?>" /></div>
 			</div>
 <?php
 }
@@ -70,6 +80,6 @@ else
 				<li><a href="questions.php" title="Questions">热点问题</a></li>
 				<li><a href="tags.php" title="Tags">主题标签</a></li>
 				<li><a href="person.php" title="Person">个人页面</a></li>
-				<li><a href="account.php" title="Account">账号管理</a></li>
+				<li><a href="ask.php" title="Ask">提问问题</a></li>
 			</ul>
 		</div>
