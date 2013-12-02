@@ -1,16 +1,47 @@
+<?php
+include 'include/db.php';
+$tbl_name = "question";
+$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect");
+
+if ($_SERVER["REQUEST_METHOD"] == "GET")
+{
+	$questionid = $_GET['questionid'];
+	$sql = "SELECT `title`, `content`, `reward`, `vote`, `view`, `create_time`, `user_userid` from `$tbl_name` WHERE questionid='$questionid'";
+	$result = mysqli_query($con, $sql);
+	if($result)
+	{
+		$row = mysqli_fetch_array($result);
+		$question_title = $row['title'];
+		$question_content = $row['content'];
+		$question_reward = $row['reward'];
+		$question_vote = $row['vote'];
+		$question_view = $row['view'];
+		$question_create_time = $row['create_time'];
+		$question_userid = $row['user_userid'];
+	}
+
+	$sql = "SELECT `username` from `user` WHERE userid='$userid'";
+	$result = mysqli_query($con, $sql);
+	if($result)
+	{
+		$row = mysqli_fetch_array($result);
+		$quetion_username = $row['username'];
+	}
+}
+?>
+
 <?php include 'include/header.php'; ?>
 		<div class="content">
 			<div class="mainbar">
 				<div class="question-title">
-					<h1>有什么好用的可视化的网页布局工具吗？</h1>
+				<h1><?php echo $question_title ?></h1>
 				</div>
 				<div class="question">
 					<div class="vote">
 					</div>
 					<div class="post">
 						<div class="post-text">
-							<p>每次网页布局都得各种调CSS代码，挺麻烦的，有没有用鼠标拖动就可以完成布局的工具呢？</p>
-							<p><img src="question.png" alt="question"></p>
+							<?php echo $question_content ?>
 						</div>
 					</div>
 					<div class="post-tags">
