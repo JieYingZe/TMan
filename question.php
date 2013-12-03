@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 {
 	$questionid = $_GET['questionid'];
 	$sql = "SELECT `title`, `content`, `reward`, `vote`, `view`, `create_time`, `user_userid` from `$tbl_name` WHERE questionid='$questionid'";
+	echo $sql;
 	$result = mysqli_query($con, $sql);
 	if($result)
 	{

@@ -1,28 +1,34 @@
 <?php
-include 'include/db.php';
-$tbl_name = "question";
-$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST")
+session_start();
+if(isset($_SESSION['userid']))
 {
-
-	$question_title = $_POST['title'];
-	$question_content = $_POST['content'];
+	include 'include/db.php';
+	$tbl_name = "question";
+	$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect");
 	
-	$sql = "INSERT INTO `$tbl_name` (`title`, `content`, `reward`, `user_userid`) VALUES ('$question_title', '$question_content', '0', '1')";
-	$result = mysqli_query($con, $sql);
-	if($result)
+	if ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
-		echo "成功发表";
-		$sql = "SELECT * FROM $tbl_name";
+	
+		$question_title = $_POST['title'];
+		$question_content = $_POST['content'];
+		
+		$sql = "INSERT INTO `$tbl_name` (`title`, `content`, `reward`, `user_userid`) VALUES ('$question_title', '$question_content', '0', '$_SESSION['userid']')";
 		$result = mysqli_query($con, $sql);
-		$row = mysqli_fetch_array($result);
-		echo $row['title'];
-		echo $row['content'];
+		$questionid = mysqli_insert_id($con);
+		if($result)
+		{
+			header("Location: question.php?questionid=$questionid");
+		}
 	}
 }
+else
+{
+	header("Location: please");
+}
 ?>
-<?php include 'include/header.php'; ?>
+<?php 
+	include 'include/header.php'; 
+?>
 		<div class="content">
 			<div class="mainbar">
 				<form class="ask-question" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

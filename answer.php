@@ -5,7 +5,7 @@ $con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")
 
 $answer = $_POST['content'];
 	
-$sql = "INSERT INTO `$tbl_name` (`title`, `content`, `reward`, `user_userid`) VALUES ('$question_title', '$question_content', '0', '1')";
+$sql = "INSERT INTO `$tbl_name` (`content`, ) VALUES ('$question_title', '$question_content', '0', '1')";
 $result = mysqli_query($con, $sql);
 if($result)
 {

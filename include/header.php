@@ -12,7 +12,7 @@
 			<a id="logo" href="index.php" title="天问"></a>
 <?php
 session_start();
-if(!isset($_SESSION['username']))
+if(!isset($_SESSION['userid']))
 {
 ?>
 			<div class="login">
@@ -44,15 +44,16 @@ if(!isset($_SESSION['username']))
 }
 else
 {
-	$username = $_SESSION['username'];
+	$userid = $_SESSION['userid'];
 	include 'include/db.php';
 	$tbl_name = "user";
 	$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect");
-	$sql = "SELECT `avatar`,`credit` FROM `$tbl_name` WHERE username='$username'";
+	$sql = "SELECT `userid`, `avatar`,`credit` FROM `$tbl_name` WHERE userid='$userid'";
 	$result = mysqli_query($con, $sql);
 	
 
 	$row = mysqli_fetch_array($result);
+	$username = $row['username'];
 	$avatar = $row['avatar'];
 	$credit = $row['credit'];
 ?>
