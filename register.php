@@ -177,7 +177,7 @@ include 'include/header.php';
    用户名: <input type="text" name="username" value="<?php echo $username;?>">
    <span class="error">* <?php echo $usernameErr;?></span>
    <br><br>
-   密码: <input type="text" name="password" value="<?php echo $password;?>">
+   密码: <input type="password" name="password" value="<?php echo $password;?>">
    <span class="error">* <?php echo $passwordErr;?></span>
    <br><br>
    E-mail: <input type="text" name="email" value="<?php echo $email;?>">

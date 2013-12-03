@@ -29,7 +29,7 @@ if(!isset($_SESSION['username']))
 							<label for="user-email" class="control-label">密码</label>
 							<div class="controls">
 								<p id="password-notification" class="notification"></p>
-								<input id="password" class="password-input" name="password" type="text" value="123456">
+								<input id="password" class="password-input" name="password" type="password" value="123456">
 							</div>
 						</fieldset>
 					</div>
