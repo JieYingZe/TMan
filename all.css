@@ -72,7 +72,7 @@ input:focus,textarea:focus{
 	background-color: #EFEFEF;
 }
 #logo{
-	background-image: url('logo.png');
+	background-image: url('images/resource/logo.png');
 	height: 65px;
 	width: 159px;
 	float: left;
@@ -305,7 +305,6 @@ input:focus,textarea:focus{
 	-moz-border-radius: 8px;      /* Gecko browsers */
 	-webkit-border-radius: 8px;   /* Webkit browsers */
 	border-radius: 8px;            /* W3C syntax */
-	
 }
 .tag:hover{
 	background-color: #FC6;

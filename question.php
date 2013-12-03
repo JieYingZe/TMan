@@ -1,3 +1,4 @@
+<?php include 'include/header.php'; ?>
 <?php
 include 'include/db.php';
 $tbl_name = "question";
@@ -7,9 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 {
 	$questionid = $_GET['questionid'];
 	$sql = "SELECT `title`, `content`, `reward`, `vote`, `view`, `create_time`, `user_userid` from `$tbl_name` WHERE questionid='$questionid'";
-	echo $sql;
 	$result = mysqli_query($con, $sql);
-	if($result)
+	$count = mysqli_num_rows($result);
+	if($count == 1)
 	{
 		$row = mysqli_fetch_array($result);
 		$question_title = $row['title'];
@@ -20,8 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 		$question_create_time = $row['create_time'];
 		$question_userid = $row['user_userid'];
 	}
-
-	$sql = "SELECT `username` from `user` WHERE userid='$userid'";
+	elseif($count == 0)
+	{
+		header("Location: pagenotfound.php");
+	}
+	else
+	{
+		header("Location: error.php");
+	}
+	$sql = "SELECT `username` from `user` WHERE userid='$question_userid'";
 	$result = mysqli_query($con, $sql);
 	if($result)
 	{
@@ -31,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 }
 ?>
 
-<?php include 'include/header.php'; ?>
 		<div class="content">
 			<div class="mainbar">
 				<div class="question-title">

@@ -1,5 +1,7 @@
+<?php 
+	include 'include/header.php'; 
+?>
 <?php
-session_start();
 if(isset($_SESSION['userid']))
 {
 	include 'include/db.php';
@@ -11,8 +13,8 @@ if(isset($_SESSION['userid']))
 	
 		$question_title = $_POST['title'];
 		$question_content = $_POST['content'];
-		
-		$sql = "INSERT INTO `$tbl_name` (`title`, `content`, `reward`, `user_userid`) VALUES ('$question_title', '$question_content', '0', '$_SESSION['userid']')";
+		$userid = $_SESSION['userid'];
+		$sql = "INSERT INTO `$tbl_name` (`title`, `content`, `reward`, `user_userid`) VALUES ('$question_title', '$question_content', '0', '$userid')";
 		$result = mysqli_query($con, $sql);
 		$questionid = mysqli_insert_id($con);
 		if($result)
@@ -23,12 +25,10 @@ if(isset($_SESSION['userid']))
 }
 else
 {
-	header("Location: please");
+	header("Location: pleaselogin.php?redirect_to=".$_SERVER["PHP_SELF"]);
 }
 ?>
-<?php 
-	include 'include/header.php'; 
-?>
+
 		<div class="content">
 			<div class="mainbar">
 				<form class="ask-question" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

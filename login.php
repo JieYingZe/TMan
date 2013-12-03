@@ -23,8 +23,8 @@ $count = mysqli_num_rows($result);
 // If result matched $myusername and $mypassword, table row must be 1 row
 if($count == 1)
 {
-
-// Register $myusername, $mypassword and redirect to file "login_success.php
+	$row = mysqli_fetch_array($result);
+	$userid = $row['userid'];
 	session_start();
 	$_SESSION['userid'] = $userid;
 	header("location:".$_POST['redirect_to']);

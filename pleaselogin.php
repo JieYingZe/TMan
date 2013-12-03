@@ -1,4 +1,7 @@
 <?php
+include 'include/header.php';
+?>
+<?php
 if($_GET['redirect_to'])
 {
 	if(!isset($_SESSION['userid']))
@@ -16,9 +19,6 @@ else
 }
 ?>
 
-<?php
-include 'include/header.php';
-?>
 
 <h1>请先登录</h1>
 

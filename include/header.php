@@ -48,7 +48,7 @@ else
 	include 'include/db.php';
 	$tbl_name = "user";
 	$con = mysqli_connect("$host", "$MySQL_username", "$MySQL_password", "$db_name")or die("cannot connect");
-	$sql = "SELECT `userid`, `avatar`,`credit` FROM `$tbl_name` WHERE userid='$userid'";
+	$sql = "SELECT `username`, `avatar`,`credit` FROM `$tbl_name` WHERE userid='$userid'";
 	$result = mysqli_query($con, $sql);
 	
 
@@ -65,7 +65,7 @@ else
 							<input type="hidden" name="redirect_to" value=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>>
 							<button type="submit" class="log-button btn"  id="logout-button" href="logout.php">退出</button>
 						</form>
-						<div class="account-credit"><img src="images/coin.png"><?php echo $credit ?></div>
+						<div class="account-credit"><img src="images/resource/coin.png"><?php echo $credit ?></div>
 					</div>
 				</div>
 				<div class="avatar"><img src="images/avatar/<?php echo $avatar ?>" /></div>
