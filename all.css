@@ -373,6 +373,7 @@ input:focus,textarea:focus{
 }
 .post-text img{
 	max-width: 640px;
+	height: auto !important;
 }
 .post-tags{
 	margin-bottom: 10px;
