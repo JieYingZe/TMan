@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 		$question_view = $row['view'];
 		$question_create_time = $row['create_time'];
 		$question_userid = $row['user_userid'];
+		//$sql = "UPDATE `question` set `view=view+1` WHERE questionid='$questionid'";
 	}
 	elseif($count == 0)
 	{

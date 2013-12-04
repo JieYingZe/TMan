@@ -41,7 +41,12 @@ else
 						<script>CKEDITOR.replace( 'content' );</script>				
 					</div>
 					<h2>分类标签</h2>
-						<input class="ask-tags" name="tags" type="text"></input>
+						<div class="ask-tags" id="ask-tags">
+							<span id="tag-collection"></span>
+							<input class="ask-tags-input" id="ask-tags-input" name="tags" type="text"></input>
+						</div>
+						<script type="text/javascript" src="prototype.js"></script>
+						<script type="text/javascript" src="tag-input.js"></script>
 					<button class="btn" type="summit">发表问题</button>
 				</form>
 			</div>
