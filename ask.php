@@ -36,10 +36,12 @@ else
 						<input class="ask-title" name="title" type="text"></input>
 					<h2>问题描述</h2>
 					<div class="editor">
-						<textarea name="content">在此处输入问题的详细描述</textarea>
+						<textarea name="content"></textarea>
 						<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 						<script>CKEDITOR.replace( 'content' );</script>				
 					</div>
+					<h2>分类标签</h2>
+						<input class="ask-tags" name="tags" type="text"></input>
 					<button class="btn" type="summit">发表问题</button>
 				</form>
 			</div>
