@@ -45,6 +45,11 @@ input:focus,textarea:focus{
 .error{
 	color: #C00;
 }
+.huge{
+	margin: 16%;
+	font-size: 1024%;
+	font-weight: bold;
+}
 .btn{
 	position: relative;
 	display: inline-block;
@@ -98,7 +103,7 @@ input:focus,textarea:focus{
 	background-color: #EFEFEF;
 }
 #logo{
-	background-image: url('images/resource/logo.png');
+	background-image: url('../images/resource/logo.png');
 	height: 65px;
 	width: 159px;
 	float: left;
@@ -390,7 +395,7 @@ input:focus,textarea:focus{
 }	
 .post-text {
 	word-wrap: break-word;
-	width: 660px;
+	width: 720px;
 	font-size: 107%;
 	margin-bottom: 5px;
 	margin-right: 5px;
@@ -398,11 +403,16 @@ input:focus,textarea:focus{
 	text-align: left;
 }
 .post-text img{
-	max-width: 640px;
+	max-width: 720px;
 	height: auto !important;
 }
+.ion-thumbsup{
+	font-size: 32px;
+	display: inline-block;
+	float: left;
+}
 .post-tags{
-	margin-bottom: 10px;
+	display: inline-block;
 	clear: both;
 }
 .mainbar h2{

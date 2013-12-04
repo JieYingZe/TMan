@@ -6,7 +6,8 @@
 	<meta name="keywords" content="天问, ask, website" />
 	<meta name="description" content="自古天意高难问，天问问答网站" />
 	<meta name="author" content="揭英泽" />
-	<link rel="stylesheet" type="text/css" href="all.css" />
+	<link rel="stylesheet" type="text/css" href="css/all.css" />
+	<link rel="stylesheet" type="text/css" href="css/ionicons.css" />
 	</head>
 		<div id="header">
 			<a id="logo" href="index.php" title="天问"></a>

@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 		$question_view = $row['view'];
 		$question_create_time = $row['create_time'];
 		$question_userid = $row['user_userid'];
-		//$sql = "UPDATE `question` set `view=view+1` WHERE questionid='$questionid'";
+		$sql = "UPDATE `question` set `view` = `view` + 1 WHERE questionid='$questionid'";
+		$result = mysqli_query($con, $sql);
 	}
 	elseif($count == 0)
 	{
@@ -35,8 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 	if($result)
 	{
 		$row = mysqli_fetch_array($result);
-		$quetion_username = $row['username'];
+		$question_username = $row['username'];
 	}
+	$sql = "SELECT `tag`.`name` FROM (`question_tag`, `tag`) WHERE `question_tag`.question_questionid = '$questionid' AND `question_tag`.tag_tagid = `tag`.tagid";
+	$result = mysqli_query($con, $sql);
+	$tags = mysqli_fetch_all($result);
 }
 ?>
 
@@ -46,27 +50,42 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 				<h1><?php echo $question_title ?></h1>
 				</div>
 				<div class="question">
-					<div class="vote">
-					</div>
 					<div class="post">
 						<div class="post-text">
 							<?php echo $question_content ?>
 						</div>
 					</div>
+					<div class="vote">
+						<a class="ion ion-thumbsup"></a>
+					</div>
 					<div class="post-tags">
-						<a href="" class="tag">html</a>
-						<a href="" class="tag">css</a>
-						<a href="" class="tag">javascript</a>
+<?php
+foreach($tags as &$tag)
+{
+?>
+						<a href="" class="tag"><?php echo $tag[0] ?></a>
+<?php
+}
+unset($tag);
+ ?>
+					</div>
+					<div class="question-info">
+						<span class="time"><?php echo $question_create_time ?></span>
+						<a href="" class=""><?php echo $question_username ?></a>
 					</div>
 				</div>
-				<h2>所有答案</h2>
+				<div>
+					<h2>所有答案</h2>
+				</div>
 				<div class="answer">
 					<div class="post-text">
 						<p>你可以试试这个，Bootstrap的可视化编辑工具。<a href="http://www.bootcss.com/p/layoutit">www.bootcss.com/p/layoutit/</a></p>
 						<p><img src="answer.png" alt="layoutit"/></p>
 					</div>
 				</div>
-				<h2>您的答案</h2>
+				<div>
+					<h2>您的答案</h2>
+				</div>
 				<div class="editor">
 					<textarea name="preEditor">在此处输入您的回答</textarea>
 					<script type="text/javascript" src="ckeditor/ckeditor.js"></script>

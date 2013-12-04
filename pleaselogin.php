@@ -20,7 +20,7 @@ else
 ?>
 
 
-<h1>请先登录</h1>
+<h1 class="huge error">请先登录</h1>
 
 <?php
 include 'include/footer.php';
