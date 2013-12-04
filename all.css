@@ -54,7 +54,13 @@ input:focus,textarea:focus{
 	line-height: 18px;
 	color: #333;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-	background-color: #CCC;
+	background: #ccc;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#f2f2f2),to(#ccc));
+	background-image: -moz-linear-gradient(top,#f2f2f2,#ccc);
+	background-image: -webkit-linear-gradient(top,#f2f2f2,#ccc);
+	background-image: -o-linear-gradient(top,#f2f2f2,#ccc);
+	background-image: -ms-linear-gradient(top,#f2f2f2,#ccc);
+	background-image: linear-gradient(top,#f2f2f2,#ccc)	
 	background-repeat: no-repeat;
 	border: 1px solid #CCC;
 	cursor: pointer;
@@ -62,6 +68,26 @@ input:focus,textarea:focus{
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	margin: 4px;
+}
+.btn:hover, .btn:focus{
+	color: #333;
+	text-decoration: none;
+	background-color: #d8d8d8;
+	background-image: -moz-linear-gradient(#f8f8f8,#d8d8d8);
+	background-image: -ms-linear-gradient(#f8f8f8,#d8d8d8);
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#f8f8f8),color-stop(100%,#d8d8d8));
+	background-image: -webkit-linear-gradient(#f8f8f8,#d8d8d8);
+	background-image: -o-linear-gradient(#f8f8f8,#d8d8d8);
+	background-image: linear-gradient(#f8f8f8,#d8d8d8);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	border-color: #bbb;	
+}
+.btn:active{
+	color: #333;
+	border-color: #bbb;
+	background-image: none;
+	-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.1),0 1px 0 rgba(255,255,255,.5);
+	box-shadow: inset 0 2px 4px rgba(0,0,0,.1),0 1px 0 rgba(255,255,255,.5);	
 }
 #header{
 	margin: 0 0 0 0px;
@@ -394,6 +420,9 @@ input:focus,textarea:focus{
 }
 .ask-title{
 	width: 98%;	
+}
+.ask-tags{
+	width: 80%;
 }
 .controls {
 	margin-left: 140px;
