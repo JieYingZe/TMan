@@ -38,9 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 		$row = mysqli_fetch_array($result);
 		$question_username = $row['username'];
 	}
+	$sql = "SELECT `answerid`, `content`, `vote`, `create_time`, `user_userid` FROM `answer` WHERE question_questionid = '$questionid' OEDER BY vote DESC";
+	$result = mysqli_query($con, $sql);
+	$answers = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	$sql = "SELECT `tag`.`name` FROM (`question_tag`, `tag`) WHERE `question_tag`.question_questionid = '$questionid' AND `question_tag`.tag_tagid = `tag`.tagid";
 	$result = mysqli_query($con, $sql);
-	$tags = mysqli_fetch_all($result);
+	$tags = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 ?>
 
@@ -63,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 foreach($tags as &$tag)
 {
 ?>
-						<a href="" class="tag"><?php echo $tag[0] ?></a>
+						<a href="" class="tag"><?php echo $tag['name'] ?></a>
 <?php
 }
 unset($tag);
@@ -77,75 +80,49 @@ unset($tag);
 				<div>
 					<h2>所有答案</h2>
 				</div>
+
+<?php
+foreach($answers as &$answer)
+{
+?>
 				<div class="answer">
 					<div class="post-text">
-						<p>你可以试试这个，Bootstrap的可视化编辑工具。<a href="http://www.bootcss.com/p/layoutit">www.bootcss.com/p/layoutit/</a></p>
-						<p><img src="answer.png" alt="layoutit"/></p>
+						<?php echo $answer['content']?>
+					</div>
+					<div class="vote">
+						<a class="ion ion-thumbsup"></a>
+					</div>
+					<div class="answer-info">
+						<span class="time"><?php echo $answer['create_time'] ?></span>
+<?php
+	$answer_userid = $answer['user_userid'];
+	$sql = "SELECT `username` from `user` WHERE userid= $answer_userid";
+	$result = mysqli_query($con, $sql);
+	if($result)
+	{
+		$row = mysqli_fetch_array($result);
+		$answer_username = $row['username'];
+	}
+?>
+						<a href="" class=""><?php echo $answer_username ?></a>	
 					</div>
 				</div>
+<?php
+}
+?>
 				<div>
 					<h2>您的答案</h2>
 				</div>
-				<div class="editor">
-					<textarea name="preEditor">在此处输入您的回答</textarea>
-					<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-					<script>CKEDITOR.replace( 'preEditor' );</script>				
-				</div>
+				<form method="POST" action="answer.php">
+					<div class="editor">
+						<textarea name="content">在此处输入您的回答</textarea>
+						<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+						<script>CKEDITOR.replace( 'content' );</script>				
+					</div>
+						<input type="hidden" name="questionid" value="<?php echo $questionid ?>" ></input>
+					<button class="btn" type="summit">发表回答</button>
+				</form>
 			</div>
-			<div class="sidebar">
-				<div class="module">
-					<h4 id="hot-tags">热门标签</h4>
-					<div id="hot-tags-list">
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-					</div>	
-				</div>
-			</div>
+<?php include 'include/sidebar.php'; ?>
 		</div>
 <?php include 'include/footer.php'; ?>
