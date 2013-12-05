@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 		$row = mysqli_fetch_array($result);
 		$question_username = $row['username'];
 	}
-	$sql = "SELECT `answerid`, `content`, `vote`, `create_time`, `user_userid` FROM `answer` WHERE question_questionid = '$questionid' OEDER BY vote DESC";
+	$sql = "SELECT `answerid`, `content`, `vote`, `create_time`, `user_userid` FROM `answer` WHERE question_questionid = '$questionid' ORDER BY vote DESC";
 	$result = mysqli_query($con, $sql);
 	$answers = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	$sql = "SELECT `tag`.`name` FROM (`question_tag`, `tag`) WHERE `question_tag`.question_questionid = '$questionid' AND `question_tag`.tag_tagid = `tag`.tagid";
@@ -115,7 +115,7 @@ foreach($answers as &$answer)
 				</div>
 				<form method="POST" action="answer.php">
 					<div class="editor">
-						<textarea name="content">在此处输入您的回答</textarea>
+						<textarea name="content"></textarea>
 						<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 						<script>CKEDITOR.replace( 'content' );</script>				
 					</div>

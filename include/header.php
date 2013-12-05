@@ -23,14 +23,14 @@ if(!isset($_SESSION['userid']))
 							<label for="username" class="control-label">用户名</label>
 							<div class="controls">
 								<p id="username-notification" class="notification"></p>
-								<input id="username" maxlength="15" name="username" type="text" value="jieyingze">
+								<input id="username" maxlength="15" name="username" type="text">
 							</div>
 						</fieldset>
 						<fieldset id="password-fieldset" class="control-group">
 							<label for="user-email" class="control-label">密码</label>
 							<div class="controls">
 								<p id="password-notification" class="notification"></p>
-								<input id="password" class="password-input" name="password" type="password" value="123456">
+								<input id="password" class="password-input" name="password" type="password">
 							</div>
 						</fieldset>
 					</div>

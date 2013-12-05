@@ -34,6 +34,9 @@ input:focus,textarea:focus{
 	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05),0 0 8px rgba(82, 168, 236, 0.6);
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05),0 0 8px rgba(82, 168, 236, 0.6);
 }
+.radio{
+	width: 80px;
+}
 .page{
 	margin: 0px;
 	background: #FFF;

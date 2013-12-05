@@ -74,60 +74,6 @@ else
 					<button class="btn" type="summit">发表问题</button>
 				</form>
 			</div>
-			<div class="sidebar">
-				<div class="module">
-					<h4 id="hot-tags">热门标签</h4>
-					<div id="hot-tags-list">
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-						<a href="" class="tag">java</a>
-						<span class="item-multiplier">
-							<span class="item-multiplier-x">×</span>
-							<span class="item-multiplier-count">999</span>
-						</span>
-						<br>
-					</div>	
-				</div>
-			</div>
+<?php include 'include/sidebar.php'; ?>
 		</div>
 <?php include 'include/footer.php'; ?>

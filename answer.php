@@ -11,6 +11,7 @@ if(isset($_SESSION['userid']))
 	$userid = $_SESSION['userid'];
 	$sql = "INSERT INTO `$tbl_name` (`content`, `question_questionid`, `user_userid`) VALUES ('$answer_content', '$questionid', '$userid')";
 	$result = mysqli_query($con, $sql);
+	header("Location: question.php?questionid=$questionid");
 }
 else
 {

@@ -184,8 +184,8 @@ include 'include/header.php';
    <span class="error">* <?php echo $emailErr;?></span>
    <br><br>
    性别:
-   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?>  value="female">女
-   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?>  value="male">男
+   <input class="radio" type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">女
+   <input class="radio" type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">男
    <span class="error">* <?php echo $genderErr;?></span>
    <br><br>
    个人网站: <input type="text" name="website" value="<?php echo $website;?>">
